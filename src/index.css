@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-amber-400: oklch(82.8% .189 84.429);
+  --color-zinc-900: oklch(21% .006 285.885);
+}
+
+@layer utilities {
+  .cursor-none-fine {
+    cursor: none;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translate(0); }
+  to { transform: translate(-100%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translate(-100%); }
+  to { transform: translate(0); }
+}
+
+@keyframes grain {
+  0%, to { transform: translate(0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%); }
+  70% { transform: translateY(15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.animate-marquee {
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: 120s linear infinite marquee;
+}
+
+.animate-marquee-reverse {
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: 130s linear infinite marquee-reverse;
+}
+
+.grain-overlay:after {
+  content: "";
+  opacity: .035;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  width: 400%;
+  height: 400%;
+  animation: .5s step-end infinite grain;
+  position: absolute;
+  top: -200%;
+  right: -200%;
+  bottom: -200%;
+  left: -200%;
+}
+
+@media (pointer: fine) {
+  body, a, button, input, textarea, select, [role="button"] {
+    cursor: none !important;
+  }
+}
