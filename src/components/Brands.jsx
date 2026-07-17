@@ -37,7 +37,7 @@ const Brands = () => {
   }, []);
 
   return (
-    <section id="brands" className="bg-[#030303] py-20 sm:py-28 overflow-hidden border-t border-b border-white/5">
+    <section id="brands" className="bg-[#030303] py-20 sm:py-28 overflow-hidden border-t border-b border-divider/5">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 flex items-center gap-4"
         initial={{ opacity: 0 }}
@@ -45,11 +45,11 @@ const Brands = () => {
         viewport={{ once: true }}
         transition={{ duration: 1 }}
       >
-        <span className="h-px flex-1 bg-white/5"></span>
-        <p className="text-[9px] tracking-[0.55em] uppercase text-white/30 shrink-0">
+        <span className="h-px flex-1 bg-divider/5"></span>
+        <p className="text-[9px] tracking-[0.55em] uppercase text-secondaryText/30 shrink-0">
           Brands I've Worked With
         </p>
-        <span className="h-px flex-1 bg-white/5"></span>
+        <span className="h-px flex-1 bg-divider/5"></span>
       </motion.div>
 
       <motion.div
@@ -69,7 +69,7 @@ const Brands = () => {
                     className={`h-8 sm:h-10 w-auto object-contain mx-10 sm:mx-14 transition-all duration-500 ease-out grayscale opacity-35 group-hover/item:grayscale-0 group-hover/item:opacity-90 ${brand.invert ? 'invert' : ''}`}
                     draggable="false"
                   />
-                  <span className="text-amber-400/15 text-[10px] shrink-0">✦</span>
+                  <span className="text-primaryAccent/15 text-[10px] shrink-0">✦</span>
                 </div>
               ))}
             </div>
@@ -87,7 +87,7 @@ const Brands = () => {
                     className={`h-8 sm:h-10 w-auto object-contain mx-10 sm:mx-14 transition-all duration-500 ease-out grayscale opacity-35 group-hover/item:grayscale-0 group-hover/item:opacity-90 ${brand.invert ? 'invert' : ''}`}
                     draggable="false"
                   />
-                  <span className="text-amber-400/15 text-[10px] shrink-0">✦</span>
+                  <span className="text-primaryAccent/15 text-[10px] shrink-0">✦</span>
                 </div>
               ))}
             </div>

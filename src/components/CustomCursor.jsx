@@ -59,8 +59,8 @@ const CustomCursor = () => {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
       scale: 1.5,
-      borderColor: 'rgba(251, 191, 36, 0.5)', // amber-400 equivalent
-      backgroundColor: 'rgba(251, 191, 36, 0.1)',
+      borderColor: 'rgba(172, 200, 162, 0.5)', // primaryAccent equivalent
+      backgroundColor: 'rgba(172, 200, 162, 0.1)',
     }
   };
 

@@ -48,11 +48,11 @@ const Work = () => {
   }, []);
 
   return (
-    <section id="work" className="bg-[#050505] py-28 sm:py-44 border-t border-white/5">
+    <section id="work" className="bg-secondary py-28 sm:py-44 border-t border-divider/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.p 
-            className="text-[10px] tracking-[0.5em] uppercase text-amber-400/60 mb-6"
+            className="text-[10px] tracking-[0.5em] uppercase text-primaryAccent/60 mb-6"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -62,7 +62,7 @@ const Work = () => {
           </motion.p>
           <div className="overflow-hidden">
             <motion.h2 
-              className="text-5xl sm:text-7xl lg:text-8xl font-thin text-white tracking-tight leading-[1.0]"
+              className="text-5xl sm:text-7xl lg:text-8xl font-thin text-primaryText tracking-tight leading-[1.0]"
               initial={{ y: '100%' }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
@@ -73,28 +73,28 @@ const Work = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/5">
+        <div className="border-t border-divider/5">
           {services.map((service, index) => (
             <motion.div 
               key={index}
-              className="py-9 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 border-b border-white/5 group cursor-default"
+              className="py-9 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 border-b border-divider/5 group cursor-default"
               variants={fadeUpVariant}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
               <div className="md:col-span-1 flex items-start pt-1">
-                <span className="text-[11px] font-mono text-white/20 tracking-widest">{service.num}</span>
+                <span className="text-[11px] font-mono text-secondaryText/20 tracking-widest">{service.num}</span>
               </div>
               <div className="md:col-span-3">
-                <h3 className="text-2xl sm:text-3xl text-white font-light tracking-tight group-hover:text-amber-400 transition-colors duration-400">{service.title}</h3>
+                <h3 className="text-2xl sm:text-3xl text-primaryText font-light tracking-tight group-hover:text-accentHover transition-colors duration-400">{service.title}</h3>
               </div>
               <div className="md:col-span-5">
-                <p className="text-white/35 text-sm leading-relaxed">{service.desc}</p>
+                <p className="text-secondaryText/35 text-sm leading-relaxed">{service.desc}</p>
               </div>
               <div className="md:col-span-3 flex flex-wrap gap-2 items-start pt-1">
                 {service.tags && service.tags.map((tag, tIndex) => (
-                  <span key={tIndex} className="text-[9px] tracking-[0.25em] uppercase text-white/20 border border-white/8 px-2.5 py-1 group-hover:border-amber-400/20 group-hover:text-amber-400/40 transition-colors duration-400">
+                  <span key={tIndex} className="text-[9px] tracking-[0.25em] uppercase text-secondaryText/20 border border-divider/8 px-2.5 py-1 group-hover:border-accentHover/20 group-hover:text-primaryAccent/40 transition-colors duration-400">
                     {tag}
                   </span>
                 ))}
@@ -110,9 +110,9 @@ const Work = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <span className="h-px flex-1 bg-white/5"></span>
-          <button className="text-[10px] tracking-[0.4em] uppercase text-white/30 hover:text-amber-400 transition-colors duration-300 py-4 px-2">
-            Let's collaborate →
+          <span className="h-px flex-1 bg-divider/5"></span>
+          <button className="text-[10px] tracking-[0.4em] uppercase text-secondaryText/30 hover:text-accentHover transition-colors duration-300 py-4 px-2">
+            Ignite a Partnership →
           </button>
         </motion.div>
       </div>

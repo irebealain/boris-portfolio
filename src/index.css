@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-amber-400: oklch(82.8% .189 84.429);
-  --color-zinc-900: oklch(21% .006 285.885);
+  --font-sans: 'Syne', sans-serif;
+  --color-primary: #111512;
+  --color-secondary: #1A2517;
+  --color-surface: #20261F;
+  --color-primaryText: #F5F5F2;
+  --color-secondaryText: #A9B6A4;
+  --color-primaryAccent: #ACC8A2;
+  --color-accentHover: #B8D4AE;
+  --color-secondaryAccent: #2F4F35;
+  --color-divider: #2A3328;
 }
 
 @layer utilities {
@@ -12,26 +21,67 @@
 }
 
 @keyframes marquee {
-  0% { transform: translate(0); }
-  to { transform: translate(-100%); }
+  0% {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translate(-100%);
+  }
 }
 
 @keyframes marquee-reverse {
-  0% { transform: translate(-100%); }
-  to { transform: translate(0); }
+  0% {
+    transform: translate(-100%);
+  }
+
+  to {
+    transform: translate(0);
+  }
 }
 
 @keyframes grain {
-  0%, to { transform: translate(0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%); }
-  70% { transform: translateY(15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
+
+  0%,
+  to {
+    transform: translate(0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%);
+  }
+
+  70% {
+    transform: translateY(15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
 }
 
 .animate-marquee {
@@ -65,7 +115,14 @@
 }
 
 @media (pointer: fine) {
-  body, a, button, input, textarea, select, [role="button"] {
+
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
     cursor: none !important;
   }
 }

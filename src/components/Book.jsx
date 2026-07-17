@@ -8,12 +8,12 @@ const fadeUpVariant = {
 
 const Book = () => {
   return (
-    <section id="book" className="bg-[#050505] py-28 sm:py-44">
+    <section id="book" className="bg-secondary py-28 sm:py-44">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8">
           <div>
             <motion.p 
-              className="text-[10px] tracking-[0.5em] uppercase text-amber-400/60 mb-6"
+              className="text-[10px] tracking-[0.5em] uppercase text-primaryAccent/60 mb-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -23,7 +23,7 @@ const Book = () => {
             </motion.p>
             <div className="overflow-hidden">
               <motion.h2 
-                className="text-5xl sm:text-6xl lg:text-7xl font-thin text-white tracking-tight leading-[1.05]"
+                className="text-5xl sm:text-6xl lg:text-7xl font-thin text-primaryText tracking-tight leading-[1.05]"
                 initial={{ y: '100%' }}
                 whileInView={{ y: 0 }}
                 viewport={{ once: true }}
@@ -34,7 +34,7 @@ const Book = () => {
             </div>
           </div>
           <motion.p 
-            className="text-white/30 max-w-xs text-sm leading-relaxed sm:text-right"
+            className="text-secondaryText/30 max-w-xs text-sm leading-relaxed sm:text-right"
             variants={fadeUpVariant}
             initial="hidden"
             whileInView="visible"
@@ -62,16 +62,16 @@ const Book = () => {
         </style>
         
         <motion.div 
-          className="relative w-full lg:max-w-4xl mx-auto min-h-[760px] sm:min-h-[680px] md:min-h-[560px] lg:min-h-[480px] overflow-hidden bg-black border border-white/5"
+          className="relative w-full lg:max-w-4xl mx-auto min-h-[760px] sm:min-h-[680px] md:min-h-[560px] lg:min-h-[480px] overflow-hidden bg-primary border border-divider/5"
           initial={{ opacity: 0, y: 30, scale: 0.97 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="pointer-events-none absolute top-5 left-5 z-10 w-7 h-7 border-t border-l border-white/10"></div>
-          <div className="pointer-events-none absolute top-5 right-5 z-10 w-7 h-7 border-t border-r border-white/10"></div>
-          <div className="pointer-events-none absolute bottom-5 left-5 z-10 w-7 h-7 border-b border-l border-white/10"></div>
-          <div className="pointer-events-none absolute bottom-5 right-5 z-10 w-7 h-7 border-b border-r border-white/10"></div>
+          <div className="pointer-events-none absolute top-5 left-5 z-10 w-7 h-7 border-t border-l border-divider/10"></div>
+          <div className="pointer-events-none absolute top-5 right-5 z-10 w-7 h-7 border-t border-r border-divider/10"></div>
+          <div className="pointer-events-none absolute bottom-5 left-5 z-10 w-7 h-7 border-b border-l border-divider/10"></div>
+          <div className="pointer-events-none absolute bottom-5 right-5 z-10 w-7 h-7 border-b border-r border-divider/10"></div>
           
           <div 
             className="cal-inline-container"
@@ -104,8 +104,8 @@ const Book = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <div className="h-px w-8 bg-amber-400/30"></div>
-          <p className="text-white/25 text-xs tracking-widest uppercase">
+          <div className="h-px w-8 bg-primaryAccent/30"></div>
+          <p className="text-secondaryText/25 text-xs tracking-widest uppercase">
             Available for global projects
           </p>
         </motion.div>

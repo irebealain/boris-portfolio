@@ -52,9 +52,9 @@ function App() {
   }, []);
 
   return (
-    <div className="font-sans antialiased text-[#6b6375] bg-white selection:bg-[#aa3bff]/30 dark:text-[#9ca3af] dark:bg-[#16171d] overflow-x-hidden">
+    <div className="font-sans antialiased text-secondaryText bg-primary selection:bg-primaryAccent/30 dark:text-secondaryText dark:bg-primary overflow-x-hidden">
       <CustomCursor />
-      <div id="root-container" className="w-full mx-auto text-left min-h-[100svh] flex flex-col box-border border-x border-[#e5e4e7] dark:border-[#2e303a] bg-black">
+      <div id="root-container" className="w-full mx-auto text-left min-h-[100svh] flex flex-col box-border border-x border-divider dark:border-divider bg-primary">
         <Navbar />
         <main>
           <Routes>

@@ -34,8 +34,8 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="relative bg-[#080808] py-28 sm:py-44 overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-400/3 rounded-full blur-[120px] pointer-events-none"></div>
+    <section id="about" className="relative bg-secondary py-28 sm:py-44 overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primaryAccent/3 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-center">
@@ -48,7 +48,7 @@ const About = () => {
           >
             <div className="aspect-[3/4] w-full overflow-hidden relative">
               <motion.div
-                className="absolute inset-0 bg-[#080808] z-10"
+                className="absolute inset-0 bg-secondary z-10"
                 initial={{ scaleY: 1 }}
                 whileInView={{ scaleY: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -68,21 +68,21 @@ const About = () => {
               className="absolute -bottom-5 -right-5 w-24 h-24 hidden lg:block"
               variants={fadeUpVariant}
             >
-              <div className="absolute right-0 top-0 w-full h-px bg-amber-400/30"></div>
-              <div className="absolute right-0 top-0 h-full w-px bg-amber-400/30"></div>
+              <div className="absolute right-0 top-0 w-full h-px bg-primaryAccent/30"></div>
+              <div className="absolute right-0 top-0 h-full w-px bg-primaryAccent/30"></div>
             </motion.div>
             <motion.div
               className="absolute -top-5 -left-5 w-24 h-24 hidden lg:block"
               variants={fadeUpVariant}
             >
-              <div className="absolute left-0 top-0 w-full h-px bg-white/10"></div>
-              <div className="absolute left-0 top-0 h-full w-px bg-white/10"></div>
+              <div className="absolute left-0 top-0 w-full h-px bg-divider/10"></div>
+              <div className="absolute left-0 top-0 h-full w-px bg-divider/10"></div>
             </motion.div>
           </motion.div>
 
           <div className="order-1 lg:order-2 space-y-10">
             <motion.p
-              className="text-[10px] tracking-[0.5em] uppercase text-amber-400/60"
+              className="text-[10px] tracking-[0.5em] uppercase text-primaryAccent/60"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -93,21 +93,21 @@ const About = () => {
 
             <div className="overflow-hidden">
               <motion.h2
-                className="text-5xl sm:text-6xl lg:text-7xl font-thin text-white leading-[1.05] tracking-tight"
+                className="text-5xl sm:text-6xl lg:text-7xl font-thin text-primaryText leading-[1.05] tracking-tight"
                 initial={{ y: '100%' }}
                 whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
-                The<br /><span className="font-black italic text-white">{title.replace('The ', '')}</span>
+                The<br /><span className="font-black italic text-primaryText">{title.replace('The ', '')}</span>
               </motion.h2>
             </div>
 
-            <div className="space-y-5 border-l border-white/8 pl-6">
+            <div className="space-y-5 border-l border-divider/8 pl-6">
               {paragraphs.map((text, i) => (
                 <motion.p
                   key={i}
-                  className="text-white/65 leading-relaxed text-sm sm:text-base"
+                  className="text-secondaryText/65 leading-relaxed text-sm sm:text-base"
                   variants={fadeUpVariant}
                   initial="hidden"
                   whileInView="visible"
@@ -129,10 +129,10 @@ const About = () => {
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col gap-1">
                   <a href={stat.link} className="flex flex-col gap-1 group">
-                    <span className="text-5xl sm:text-6xl font-thin text-white leading-none group-hover:text-amber-400/80 transition-colors duration-300" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                    <span className="text-5xl sm:text-6xl font-thin text-primaryText leading-none group-hover:text-primaryAccent/80 transition-colors duration-300" style={{ fontVariantNumeric: 'tabular-nums' }}>
                       {stat.number}
                     </span>
-                    <span className="text-[10px] tracking-[0.4em] uppercase text-white/55 group-hover:text-amber-400/50 transition-colors duration-300">
+                    <span className="text-[10px] tracking-[0.4em] uppercase text-secondaryText/55 group-hover:text-primaryAccent/50 transition-colors duration-300">
                       {stat.label}
                     </span>
                   </a>

@@ -27,17 +27,17 @@ const ProjectGallery = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#050505] flex items-center justify-center pt-20">
-        <p className="text-white/50 tracking-widest text-sm uppercase">Loading...</p>
+      <div className="min-h-screen bg-secondary flex items-center justify-center pt-20">
+        <p className="text-secondaryText/50 tracking-widest text-sm uppercase">Loading...</p>
       </div>
     );
   }
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center pt-20 gap-6">
-        <p className="text-white/50 tracking-widest text-sm uppercase">Project not found</p>
-        <Link to="/" className="text-[10px] tracking-[0.4em] uppercase text-white/30 hover:text-amber-400 transition-colors duration-300 py-4 px-2 border border-white/10 rounded-sm">
+      <div className="min-h-screen bg-secondary flex flex-col items-center justify-center pt-20 gap-6">
+        <p className="text-secondaryText/50 tracking-widest text-sm uppercase">Project not found</p>
+        <Link to="/" className="text-[10px] tracking-[0.4em] uppercase text-secondaryText/30 hover:text-accentHover transition-colors duration-300 py-4 px-2 border border-divider/10 rounded-sm">
           ← Back to Home
         </Link>
       </div>
@@ -45,13 +45,13 @@ const ProjectGallery = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] pt-28 sm:pt-44 pb-20">
+    <div className="min-h-screen bg-secondary pt-28 sm:pt-44 pb-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
-        <Link to="/" className="inline-flex items-center gap-2 text-[10px] tracking-[0.4em] uppercase text-amber-400/60 hover:text-amber-400 transition-colors mb-12">
+        <Link to="/" className="inline-flex items-center gap-2 text-[10px] tracking-[0.4em] uppercase text-primaryAccent/60 hover:text-accentHover transition-colors mb-12">
           <span>←</span> Back
         </Link>
         <motion.p 
-          className="text-[10px] tracking-[0.5em] uppercase text-white/50 mb-4"
+          className="text-[10px] tracking-[0.5em] uppercase text-secondaryText/50 mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -60,7 +60,7 @@ const ProjectGallery = () => {
         </motion.p>
         <div className="overflow-hidden mb-16">
           <motion.h1 
-            className="text-4xl sm:text-6xl lg:text-7xl font-thin text-white tracking-tight leading-[1.05]"
+            className="text-4xl sm:text-6xl lg:text-7xl font-thin text-primaryText tracking-tight leading-[1.05]"
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -70,8 +70,8 @@ const ProjectGallery = () => {
         </div>
 
         {(!project.gallery || project.gallery.length === 0) ? (
-          <div className="py-20 border-t border-white/5 text-center">
-            <p className="text-white/30 tracking-widest text-sm uppercase">No images in this gallery yet.</p>
+          <div className="py-20 border-t border-divider/5 text-center">
+            <p className="text-secondaryText/30 tracking-widest text-sm uppercase">No images in this gallery yet.</p>
           </div>
         ) : (
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
