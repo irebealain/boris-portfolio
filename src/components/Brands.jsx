@@ -37,7 +37,7 @@ const Brands = () => {
   }, []);
 
   return (
-    <section id="brands" className="bg-[#030303] py-20 sm:py-28 overflow-hidden border-t border-b border-divider/5">
+    <section id="brands" className="bg-primary py-20 sm:py-28 overflow-hidden border-t border-b border-divider/5">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 flex items-center gap-4"
         initial={{ opacity: 0 }}

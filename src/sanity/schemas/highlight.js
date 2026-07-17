@@ -10,13 +10,37 @@ export default {
       description: 'Title for the highlight (e.g., "Main Hero Settings")'
     },
     {
+      name: 'heroMediaType',
+      title: 'Hero Media Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Image', value: 'image' },
+          { title: 'Video', value: 'video' }
+        ],
+        layout: 'radio'
+      },
+      initialValue: 'image'
+    },
+    {
       name: 'heroImage',
       title: 'Hero Image',
       type: 'image',
       description: 'The background image for the main hero section',
       options: {
         hotspot: true
-      }
+      },
+      hidden: ({ document }) => document?.heroMediaType === 'video'
+    },
+    {
+      name: 'heroVideo',
+      title: 'Hero Video',
+      type: 'file',
+      description: 'The background video for the main hero section',
+      options: {
+        accept: 'video/*'
+      },
+      hidden: ({ document }) => document?.heroMediaType !== 'video'
     },
     {
       name: 'showreelVideoType',

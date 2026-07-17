@@ -68,7 +68,7 @@ const Work = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              What I Do<br/><span className="font-black italic">Best</span>
+              <span className="font-black italic">Services</span>
             </motion.h2>
           </div>
         </div>

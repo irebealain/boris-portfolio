@@ -3,15 +3,43 @@
 
 @theme {
   --font-sans: 'Syne', sans-serif;
-  --color-primary: #111512;
-  --color-secondary: #1A2517;
-  --color-surface: #20261F;
-  --color-primaryText: #F5F5F2;
-  --color-secondaryText: #A9B6A4;
-  --color-primaryAccent: #ACC8A2;
-  --color-accentHover: #B8D4AE;
-  --color-secondaryAccent: #2F4F35;
-  --color-divider: #2A3328;
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-surface: var(--surface);
+  --color-primaryText: var(--primaryText);
+  --color-secondaryText: var(--secondaryText);
+  --color-primaryAccent: var(--primaryAccent);
+  --color-accentHover: var(--accentHover);
+  --color-secondaryAccent: var(--secondaryAccent);
+  --color-divider: var(--divider);
+}
+
+:root {
+  --primary: #111512;
+  --secondary: #1A2517;
+  --surface: #20261F;
+  --primaryText: #F5F5F2;
+  --secondaryText: #A9B6A4;
+  --primaryAccent: #ACC8A2;
+  --accentHover: #B8D4AE;
+  --secondaryAccent: #2F4F35;
+  --divider: #2A3328;
+}
+
+.light {
+  --primary: #F5F5F2;
+  --secondary: #EBEBEB;
+  --surface: #E0E0E0;
+  --primaryText: #111512;
+  --secondaryText: #4A5644;
+  --primaryAccent: #4F6D45;
+  --accentHover: #3C5A32;
+  --secondaryAccent: #A1C099;
+  --divider: #C8D1C4;
+}
+
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 @layer utilities {

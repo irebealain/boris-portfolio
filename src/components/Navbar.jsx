@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTheme } from '../hooks/useTheme';
 
 const navItems = [
   { label: 'Origin', id: 'home' },
@@ -12,6 +13,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   // Prevent scrolling when menu is open
   useEffect(() => {
@@ -93,9 +95,24 @@ const Navbar = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-primaryAccent group-hover:w-full transition-all duration-300"></span>
                 </motion.button>
               ))}
+              <button onClick={toggleTheme} className="text-secondaryText/50 hover:text-primaryText transition-colors p-2" aria-label="Toggle Theme">
+                {theme === 'dark' ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                )}
+              </button>
             </div>
-            <button
-              className="md:hidden text-secondaryText/70 hover:text-primaryText transition-colors p-3 relative z-50"
+            <div className="md:hidden flex items-center gap-2">
+              <button onClick={toggleTheme} className="text-secondaryText/70 hover:text-primaryText transition-colors p-2 relative z-50" aria-label="Toggle Theme">
+                {theme === 'dark' ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                )}
+              </button>
+              <button
+                className="text-secondaryText/70 hover:text-primaryText transition-colors p-3 relative z-50"
               tabIndex="0"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle Menu"
@@ -112,6 +129,7 @@ const Navbar = () => {
                 </svg>
               )}
             </button>
+            </div>
           </div>
         </div>
       </nav>

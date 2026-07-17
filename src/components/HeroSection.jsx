@@ -23,7 +23,9 @@ const HeroSection = () => {
 
   useEffect(() => {
     client.fetch(`*[_type == "highlight"][0]{
-      heroImage
+      heroMediaType,
+      heroImage,
+      "heroVideoUrl": heroVideo.asset->url
     }`)
       .then((data) => {
         if (data) setHighlightData(data);
@@ -31,14 +33,23 @@ const HeroSection = () => {
       .catch(console.error);
   }, []);
 
+  const heroMediaType = highlightData?.heroMediaType || 'image';
+  const heroVideoSrc = highlightData?.heroVideoUrl || "";
   const heroImageSrc = highlightData?.heroImage
     ? urlFor(highlightData.heroImage).url()
     : "https://pub-440ec315fbef45d880bb7429196ef9bd.r2.dev/assets/World%20Photography%20day_2.JPG";
 
+  const renderMedia = (className) => {
+    if (heroMediaType === 'video' && heroVideoSrc) {
+      return <video src={heroVideoSrc} autoPlay loop muted playsInline className={className} />;
+    }
+    return <img src={heroImageSrc} alt="Mugisha Boris" className={className} />;
+  };
+
   return (
     <section id="hero" className="relative h-[100svh] w-full flex items-start sm:items-center justify-start bg-primary overflow-hidden grain-overlay">
       <div className="absolute inset-0 lg:hidden">
-        <img src={heroImageSrc} alt="Mugisha Boris" className="w-full h-full object-cover object-[center_40%]" />
+        {renderMedia("w-full h-full object-cover object-[center_40%]")}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/20 to-primary/90"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/75 via-primary/30 to-transparent"></div>
       </div>
@@ -48,7 +59,7 @@ const HeroSection = () => {
         animate={{ scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
-        <img src={heroImageSrc} alt="Mugisha Boris" className="w-full h-full object-cover object-[center_50%] scale-110" />
+        {renderMedia("w-full h-full object-cover object-[center_50%] scale-110")}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/45 via-primary/10 to-primary/85"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/25 to-transparent"></div>
       </motion.div>

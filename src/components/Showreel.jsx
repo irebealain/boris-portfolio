@@ -69,7 +69,7 @@ const Showreel = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
-                The<br /><span className="font-black italic">Highlights</span>
+                Featured<br /><span className="font-black italic">Work</span>
               </motion.h2>
             </div>
           </div>
