@@ -57,7 +57,7 @@ const Sets = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="font-black italic">Experience</span>
+            <span className="font-black italic">Adventures</span>
           </motion.h2>
         </div>
       </div>
