@@ -2,27 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { client, urlFor } from '../sanity/client';
 
-const fallbackBrandsRow1 = [
-  { img: "/assets/images/equity-bank-logo_1.webp", alt: "Equity Bank" },
-  { img: "/assets/images/bankofkigali_1.svg", alt: "Bank of Kigali" },
-  { img: "/assets/images/irembo_1.svg", alt: "Irembo" },
-  { img: "/assets/images/smart-africa_1.webp", alt: "Smart Africa" },
-  { img: "/assets/images/afreximbank_1.svg", alt: "Afreximbank" },
-  { img: "/assets/images/africa-usa_1.webp", alt: "Africa-USANow", invert: true }
-];
-
-const fallbackBrandsRow2 = [
-  { img: "/assets/images/irembo_1.svg", alt: "Irembo" },
-  { img: "/assets/images/smart-africa_1.webp", alt: "Smart Africa" },
-  { img: "/assets/images/equity-bank-logo_1.webp", alt: "Equity Bank" },
-  { img: "/assets/images/afreximbank_1.svg", alt: "Afreximbank" },
-  { img: "/assets/images/bankofkigali_1.svg", alt: "Bank of Kigali" },
-  { img: "/assets/images/africa-usa_1.webp", alt: "Africa-USANow", invert: true }
-];
-
 const Brands = () => {
-  const [row1, setRow1] = useState(fallbackBrandsRow1);
-  const [row2, setRow2] = useState(fallbackBrandsRow2);
+  const [row1, setRow1] = useState([]);
+  const [row2, setRow2] = useState([]);
 
   useEffect(() => {
     client.fetch(`*[_type == "brand"] | order(order asc)`)
@@ -35,6 +17,9 @@ const Brands = () => {
       })
       .catch(console.error);
   }, []);
+  if (row1.length === 0) {
+    return null;
+  }
 
   return (
     <section id="brands" className="bg-primary py-20 sm:py-28 overflow-hidden border-t border-b border-divider/5">

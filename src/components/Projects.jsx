@@ -3,23 +3,8 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { client, urlFor } from '../sanity/client';
 
-const fallbackProjects = [
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.53.58_1.jpeg", subtitle: "Lifestyle", title: "Into the Mist" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.53.59_20_1__1.jpeg", subtitle: "Portrait", title: "Cattle Queen" },
-  { img: "/assets/images/IMG_2863_1.JPG", subtitle: "Portrait", title: "Highland Spirit" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.35_1.jpeg", subtitle: "Documentary", title: "Open Field" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.37_1.jpeg", subtitle: "Documentary", title: "Open Skies" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.37_20_3__1.jpeg", subtitle: "Documentary", title: "In Class" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.37_20_2__1.jpeg", subtitle: "Corporate", title: "Precision Work" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.36_20_1__1.jpeg", subtitle: "CSR Project", title: "Green Roots" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.37_20_1__1.jpeg", subtitle: "Industrial", title: "Hands On" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.54.01_1.jpeg", subtitle: "Sports", title: "Long Glass" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.53.55_20_1__1.jpeg", subtitle: "BTS", title: "On Set" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.54.02_1.jpeg", subtitle: "Sports", title: "Finish Line" }
-];
-
 const Projects = () => {
-  const [projectsData, setProjectsData] = useState(fallbackProjects);
+  const [projectsData, setProjectsData] = useState([]);
 
   useEffect(() => {
     client.fetch(`*[_type == "project"]{
@@ -35,6 +20,9 @@ const Projects = () => {
       })
       .catch(console.error);
   }, []);
+  if (projectsData.length === 0) {
+    return null;
+  }
 
   return (
     <section id="projects" className="bg-secondary py-28 sm:py-44">

@@ -7,35 +7,8 @@ const fadeUpVariant = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
-const fallbackServices = [
-  {
-    num: "01",
-    title: "Color Grading",
-    desc: "Cinematic color treatments that define mood, atmosphere, and emotional tone. From brand commercials to feature film pipelines.",
-    tags: ["DaVinci Resolve", "ACES Pipeline", "LUT Design"]
-  },
-  {
-    num: "02",
-    title: "Photography",
-    desc: "Editorial, portrait, and landscape photography with a cinematic eye. Every shot composed with intention and craft.",
-    tags: ["Sony Alpha", "Canon EOS", "Medium Format"]
-  },
-  {
-    num: "03",
-    title: "Videography",
-    desc: "Full-service video production from pre-production strategy to final delivery. Motion that moves people.",
-    tags: ["4K Cinema", "Drone Aerial", "Gimbal Work"]
-  },
-  {
-    num: "04",
-    title: "Post-Production",
-    desc: "Complete post-production workflow management — editing, sound, color, and Film-making effects under one creative vision.",
-    tags: ["Premiere Pro", "After Effects", "DaVinci"]
-  }
-];
-
 const Work = () => {
-  const [services, setServices] = useState(fallbackServices);
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
     client.fetch(`*[_type == "expertise"] | order(order asc)`)
@@ -46,6 +19,9 @@ const Work = () => {
       })
       .catch(console.error);
   }, []);
+  if (services.length === 0) {
+    return null;
+  }
 
   return (
     <section id="work" className="bg-secondary py-28 sm:py-44 border-t border-divider/5">

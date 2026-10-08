@@ -20,18 +20,14 @@ const About = () => {
       .catch(console.error);
   }, []);
 
-  const title = aboutData?.title || 'The Creator';
-  const imageUrl = aboutData?.image ? urlFor(aboutData.image).url() : '/assets/images/Artwork_20by_20Kalibana.JPG';
-  const paragraphs = aboutData?.story?.length > 0 ? aboutData.story : [
-    "Born and raised in Rwanda, I’m a visual storyteller driven by emotion, atmosphere, and the power of cinematic imagery. My creative journey began with a fascination for color, light, movement, and the way a single frame can communicate what words often cannot.",
-    "Working across photography, cinematography, and post-production, I create visuals that combine authenticity with cinematic storytelling and strong artistic direction. Inspired by diverse cultures, environments, and collaborations, I craft emotionally grounded imagery for brands, campaigns, documentaries, and commercial productions. From concept development to editing and color grading, I approach every project with creativity, precision, and attention to detail.",
-    "Every frame is a canvas. Every grade is a mood. Every project is a story waiting to be told through color. The goal remains the same: to create timeless visuals that connect, inspire, and tell stories worth remembering."
-  ];
-  const stats = aboutData?.stats?.length > 0 ? aboutData.stats : [
-    { number: "10+", label: "Years", link: "#sets" },
-    { number: "200+", label: "Projects", link: "#projects" },
-    { number: "50+", label: "Brands", link: "#brands" }
-  ];
+  if (!aboutData) {
+    return null;
+  }
+
+  const title = aboutData.title;
+  const imageUrl = aboutData.image ? urlFor(aboutData.image).url() : '';
+  const paragraphs = aboutData.story || [];
+  const stats = aboutData.stats || [];
 
   return (
     <section id="about" className="relative bg-secondary py-28 sm:py-44 overflow-hidden">

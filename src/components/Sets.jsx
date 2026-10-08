@@ -3,24 +3,13 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { client, urlFor } from '../sanity/client';
 
-const fallbackSets = [
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.35_20_1__1.jpeg", subtitle: "Street Pulse", title: "Kigali" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.53.57_1.jpeg", subtitle: "Arsenal Collab", title: "London" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.54.08_1.jpeg", subtitle: "Transform Africa", title: "Kigali" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.54.11_1.jpeg", subtitle: "Night Game", title: "Rwanda" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.53.55_1.jpeg", subtitle: "Dusk Light", title: "Rwanda" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.54.08_20_1__1.jpeg", subtitle: "Ghetto Graff", title: "Guinée" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-14_20at_2020.36.36_1.jpeg", subtitle: "Hard Ground", title: "Mine Site" },
-  { img: "/assets/images/WhatsApp_20Image_202026-05-15_20at_2006.53.55_20_2__1.jpeg", subtitle: "Culture & Nature", title: "Highland Spirit" }
-];
-
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
 const Sets = () => {
-  const [setsData, setSetsData] = useState(fallbackSets);
+  const [setsData, setSetsData] = useState([]);
 
   useEffect(() => {
     client.fetch(`*[_type == "experience"]{
@@ -36,6 +25,9 @@ const Sets = () => {
       })
       .catch(console.error);
   }, []);
+  if (setsData.length === 0) {
+    return null;
+  }
 
   return (
     <section id="sets" className="bg-secondary py-28 sm:py-44">

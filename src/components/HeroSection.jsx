@@ -33,11 +33,16 @@ const HeroSection = () => {
       .catch(console.error);
   }, []);
 
-  const heroMediaType = highlightData?.heroMediaType || 'image';
-  const heroVideoSrc = highlightData?.heroVideoUrl || "";
-  const heroImageSrc = highlightData?.heroImage
-    ? urlFor(highlightData.heroImage).url()
-    : "https://pub-440ec315fbef45d880bb7429196ef9bd.r2.dev/assets/World%20Photography%20day_2.JPG";
+  if (!highlightData) {
+    return (
+      <section id="hero" className="relative h-[100svh] w-full flex items-start sm:items-center justify-start bg-primary overflow-hidden grain-overlay">
+      </section>
+    );
+  }
+
+  const heroMediaType = highlightData.heroMediaType || 'image';
+  const heroVideoSrc = highlightData.heroVideoUrl || "";
+  const heroImageSrc = highlightData.heroImage ? urlFor(highlightData.heroImage).url() : "";
 
   const renderMedia = (className) => {
     if (heroMediaType === 'video' && heroVideoSrc) {
