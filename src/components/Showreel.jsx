@@ -2,17 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { client } from '../sanity/client';
 
-const thumbnails = [
-  { img: "/assets/images/showreel_1.jpg", title: "Recent", subtitle: "Showreel" },
-  { img: "/assets/images/trinity_1.jpg", title: "We are Trinity", subtitle: "Mining" },
-  { img: "/assets/images/awfc_1.jpg", title: "Visit Rwanda", subtitle: "Arsenal WFC" },
-  { img: "/assets/images/bigereho_1.jpg", title: "Bigereho na BK", subtitle: "TVC" },
-  { img: "/assets/images/goballistic_1.jpg", title: "Go Ballistic", subtitle: "Food" },
-  { img: "/assets/images/javier_1.jpg", title: "PSG", subtitle: "Visit Rwanda" },
-  { img: "/assets/images/kazi_1.jpg", title: "Kazi", subtitle: "Fashion" },
-  { img: "/assets/images/shenseea_1.jpg", title: "Shenseea", subtitle: "Lifestyle" },
-  { img: "/assets/images/tdr_1.jpg", title: "TDR 2025", subtitle: "TVC" }
-];
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -21,29 +10,38 @@ const fadeUpVariant = {
 
 const Showreel = () => {
   const [activeVideo, setActiveVideo] = useState(0);
-  const [highlightData, setHighlightData] = useState(null);
+  const [showreels, setShowreels] = useState([]);
   const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    client.fetch(`*[_type == "highlight"][0]{
+    client.fetch(`*[_type == "highlight"] | order(_createdAt asc) {
       title,
+      subtitle,
+      "thumbnailUrl": thumbnail.asset->url,
       showreelVideoType,
       showreelVideoUrl,
       "showreelVideoFileUrl": showreelVideoFile.asset->url
     }`)
       .then((data) => {
-        if (data) setHighlightData(data);
+        if (data && data.length > 0) setShowreels(data);
       })
       .catch(console.error);
   }, []);
 
+  const handleVideoEnd = () => {
+    if (showreels.length > 0) {
+      setActiveVideo((prev) => (prev + 1) % showreels.length);
+    }
+  };
+
   // Determine video URL
   let videoSrc = "https://pub-440ec315fbef45d880bb7429196ef9bd.r2.dev/assets/A%20show%20Reel%20by%20Gitego.mp4";
-  if (highlightData) {
-    if (highlightData.showreelVideoType === 'file' && highlightData.showreelVideoFileUrl) {
-      videoSrc = highlightData.showreelVideoFileUrl;
-    } else if (highlightData.showreelVideoType === 'url' && highlightData.showreelVideoUrl) {
-      videoSrc = highlightData.showreelVideoUrl;
+  const activeReel = showreels[activeVideo] || {};
+  if (showreels.length > 0) {
+    if (activeReel.showreelVideoType === 'file' && activeReel.showreelVideoFileUrl) {
+      videoSrc = activeReel.showreelVideoFileUrl;
+    } else if (activeReel.showreelVideoType === 'url' && activeReel.showreelVideoUrl) {
+      videoSrc = activeReel.showreelVideoUrl;
     }
   }
 
@@ -80,7 +78,7 @@ const Showreel = () => {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            9 films — commercial, documentary & music
+            {showreels.length > 0 ? showreels.length : 9} films — commercial, documentary & music
           </motion.p>
         </div>
 
@@ -91,18 +89,18 @@ const Showreel = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <video className="w-full h-full object-contain" src={videoSrc} autoPlay playsInline muted={isMuted} loop></video>
+          <video className="w-full h-full object-contain" src={videoSrc} autoPlay playsInline muted={isMuted} onEnded={handleVideoEnd}></video>
           <div className="absolute inset-0 z-10 cursor-pointer"></div>
           <div className="absolute top-0 inset-x-0 h-[7%] bg-gradient-to-b from-primary to-transparent pointer-events-none"></div>
           <div className="absolute bottom-0 inset-x-0 h-[7%] bg-gradient-to-t from-primary to-transparent pointer-events-none"></div>
 
           <div className="absolute top-[10%] left-6 sm:left-10 z-20 pointer-events-none">
             <p className="text-[9px] tracking-[0.45em] uppercase text-primaryAccent/50 mb-1.5">Now playing</p>
-            <p className="text-secondaryText/70 text-sm sm:text-base font-light tracking-wide">{thumbnails[activeVideo].title}</p>
-            <p className="text-[9px] tracking-[0.4em] uppercase text-secondaryText/25 mt-1">{thumbnails[activeVideo].subtitle}</p>
+            <p className="text-secondaryText/70 text-sm sm:text-base font-light tracking-wide">{activeReel.title || "Loading..."}</p>
+            <p className="text-[9px] tracking-[0.4em] uppercase text-secondaryText/25 mt-1">{activeReel.subtitle || "Showreel"}</p>
           </div>
           <div className="absolute top-[10%] right-6 sm:right-10 z-20 text-right pointer-events-none">
-            <span className="text-[10px] tracking-[0.4em] text-secondaryText/20">0{activeVideo + 1} / 0{thumbnails.length}</span>
+            <span className="text-[10px] tracking-[0.4em] text-secondaryText/20">0{activeVideo + 1} / 0{showreels.length > 0 ? showreels.length : 1}</span>
           </div>
 
           <button 
@@ -128,7 +126,7 @@ const Showreel = () => {
         </motion.div>
 
         <div className="flex gap-px mt-px overflow-x-auto [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
-          {thumbnails.map((thumb, index) => (
+          {showreels.map((reel, index) => (
             <motion.button
               key={index}
               onClick={() => setActiveVideo(index)}
@@ -139,12 +137,12 @@ const Showreel = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.05 * index }}
             >
-              <img src={thumb.img} alt={thumb.title} className="absolute inset-0 w-full h-full object-cover" />
+              {reel.thumbnailUrl && <img src={reel.thumbnailUrl} alt={reel.title} className="absolute inset-0 w-full h-full object-cover" />}
               <div className={`absolute inset-0 transition-opacity duration-300 ${activeVideo === index ? 'bg-primary/40' : 'bg-primary/65 group-hover:bg-primary/50'}`}></div>
               {activeVideo === index && <div className="absolute top-0 inset-x-0 h-0.5 bg-primaryAccent"></div>}
               <div className="relative z-10 p-3 sm:p-4">
-                <span className="block text-[8px] tracking-[0.4em] uppercase text-primaryAccent/70 mb-1">{thumb.subtitle}</span>
-                <span className={`block text-[12px] sm:text-[13px] font-light leading-snug transition-colors ${activeVideo === index ? 'text-primaryText' : 'text-secondaryText/60'}`}>{thumb.title}</span>
+                <span className="block text-[8px] tracking-[0.4em] uppercase text-primaryAccent/70 mb-1">{reel.subtitle}</span>
+                <span className={`block text-[12px] sm:text-[13px] font-light leading-snug transition-colors ${activeVideo === index ? 'text-primaryText' : 'text-secondaryText/60'}`}>{reel.title}</span>
               </div>
             </motion.button>
           ))}

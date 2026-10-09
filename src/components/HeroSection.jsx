@@ -22,7 +22,7 @@ const HeroSection = () => {
   const [highlightData, setHighlightData] = useState(null);
 
   useEffect(() => {
-    client.fetch(`*[_type == "highlight"][0]{
+    client.fetch(`*[_type == "hero"][0]{
       heroMediaType,
       heroImage,
       "heroVideoUrl": heroVideo.asset->url

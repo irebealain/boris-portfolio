@@ -1,46 +1,28 @@
 export default {
   name: 'highlight',
-  title: 'Highlight (Hero & Showreel)',
+  title: 'Showreel',
   type: 'document',
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'Title for the highlight (e.g., "Main Hero Settings")'
+      description: 'Title of the Showreel'
     },
     {
-      name: 'heroMediaType',
-      title: 'Hero Media Type',
+      name: 'subtitle',
+      title: 'Subtitle',
       type: 'string',
-      options: {
-        list: [
-          { title: 'Image', value: 'image' },
-          { title: 'Video', value: 'video' }
-        ],
-        layout: 'radio'
-      },
-      initialValue: 'image'
+      description: 'Subtitle or category of the Showreel (e.g., "TVC")'
     },
     {
-      name: 'heroImage',
-      title: 'Hero Image',
+      name: 'thumbnail',
+      title: 'Thumbnail',
       type: 'image',
-      description: 'The background image for the main hero section',
+      description: 'Thumbnail image to display before playing the reel',
       options: {
         hotspot: true
-      },
-      hidden: ({ document }) => document?.heroMediaType === 'video'
-    },
-    {
-      name: 'heroVideo',
-      title: 'Hero Video',
-      type: 'file',
-      description: 'The background video for the main hero section',
-      options: {
-        accept: 'video/*'
-      },
-      hidden: ({ document }) => document?.heroMediaType !== 'video'
+      }
     },
     {
       name: 'showreelVideoType',
