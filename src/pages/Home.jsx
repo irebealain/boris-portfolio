@@ -16,7 +16,7 @@ const Home = () => {
       <Showreel />
       <Sets />
       <Projects />
-      {/* <Brands /> */}
+      <Brands />
     </>
   );
 };
