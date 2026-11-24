@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { client, urlFor } from '../sanity/client';
 
-const fallbackBrandsRow1 = [
-  { img: "/assets/images/equity-bank-logo_1.webp", alt: "Equity Bank" },
-  { img: "/assets/images/bankofkigali_1.svg", alt: "Bank of Kigali" },
-  { img: "/assets/images/irembo_1.svg", alt: "Irembo" },
-  { img: "/assets/images/smart-africa_1.webp", alt: "Smart Africa" },
-  { img: "/assets/images/afreximbank_1.svg", alt: "Afreximbank" },
-  { img: "/assets/images/africa-usa_1.webp", alt: "Africa-USANow", invert: true }
-];
+// const fallbackBrandsRow1 = [
+//   { img: "/assets/images/equity-bank-logo_1.webp", alt: "Equity Bank" },
+//   { img: "/assets/images/bankofkigali_1.svg", alt: "Bank of Kigali" },
+//   { img: "/assets/images/irembo_1.svg", alt: "Irembo" },
+//   { img: "/assets/images/smart-africa_1.webp", alt: "Smart Africa" },
+//   { img: "/assets/images/afreximbank_1.svg", alt: "Afreximbank" },
+//   { img: "/assets/images/africa-usa_1.webp", alt: "Africa-USANow", invert: true }
+// ];
 
-const fallbackBrandsRow2 = [
-  { img: "/assets/images/irembo_1.svg", alt: "Irembo" },
-  { img: "/assets/images/smart-africa_1.webp", alt: "Smart Africa" },
-  { img: "/assets/images/equity-bank-logo_1.webp", alt: "Equity Bank" },
-  { img: "/assets/images/afreximbank_1.svg", alt: "Afreximbank" },
-  { img: "/assets/images/bankofkigali_1.svg", alt: "Bank of Kigali" },
-  { img: "/assets/images/africa-usa_1.webp", alt: "Africa-USANow", invert: true }
-];
+// const fallbackBrandsRow2 = [
+//   { img: "/assets/images/irembo_1.svg", alt: "Irembo" },
+//   { img: "/assets/images/smart-africa_1.webp", alt: "Smart Africa" },
+//   { img: "/assets/images/equity-bank-logo_1.webp", alt: "Equity Bank" },
+//   { img: "/assets/images/afreximbank_1.svg", alt: "Afreximbank" },
+//   { img: "/assets/images/bankofkigali_1.svg", alt: "Bank of Kigali" },
+//   { img: "/assets/images/africa-usa_1.webp", alt: "Africa-USANow", invert: true }
+// ];
 
 const Brands = () => {
   const [row1, setRow1] = useState(fallbackBrandsRow1);
